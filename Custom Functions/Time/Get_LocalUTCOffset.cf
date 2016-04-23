@@ -1,0 +1,19 @@
+<fmxmlsnippet type="FMObjectList">
+<CustomFunction visible="True" 
+	parameters="" 
+	name="Get_LocalOffsetUTC">
+	
+<Calculation><![CDATA[/* 
+	==========================================
+	Returns an integer representing the differnce between the user's local system time
+	and Coordinated Universal Time (UTC) for determing time zone.
+	========================================== */
+
+Let ( [
+	~utc = Get ( CurrentTimeUTCMilliseconds ) / 1000
+	; ~utc = Hour ( GetAsTimeStamp ( ~utc ) ) + Minute ( GetAsTimeStamp ( ~utc ) ) / 60
+	; ~local = Hour ( Get ( CurrentTimestamp ) ) + Minute ( Get ( CurrentTimestamp ) ) / 60
+	] ; ~local - ~utc
+)
+
+]]></Calculation></CustomFunction></fmxmlsnippet>
