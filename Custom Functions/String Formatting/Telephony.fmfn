@@ -1,0 +1,25 @@
+<fmxmlsnippet type="FMObjectList"><CustomFunction visible="True" parameters="text" name="Telephony"><Calculation><![CDATA[
+/* -----------
+
+Telphony ( text )
+Scrub phone/fax numbers in free data entry field and return in format +1 (555) 555-5555.
+
+-----------*/
+
+Let ( [
+	~number = Filter ( text ; "+1234567890" )
+	; ~digits = Filter ( ~number ; "1234567890" ) 
+	; ~international = PatternCount ( text ; "+" ) 
+	; ~last = Right ( ~number ; 4 ) 
+	; ~exchange = Middle ( ~number ; Length ( ~number ) - 6 ; 3 ) 
+	; ~area = Middle ( ~number ; Length ( ~number ) - 10 ; 3 )
+	; ~first = Trim ( Left ( ~number ; Length ( ~number ) - 10 ) )
+	; ~result = Case ( 
+		Length ( ~digits ) < 10 ;
+		~number ;
+		Trim ( ~first & " " & "(" ) & ~area & ")" & " " & ~exchange & "-" & ~last
+	) ] ;
+	~result
+)
+
+]]></Calculation></CustomFunction></fmxmlsnippet>
