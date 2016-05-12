@@ -1,0 +1,15 @@
+<fmxmlsnippet type="FMObjectList">
+<CustomFunction visible="True" 
+	parameters="ListOfValues1,ListOfValues2" 
+	name="ValuesMatch">
+	
+<Calculation><![CDATA[/* 
+	==========================================
+	ValuesMatch ( ListOfValues1 ; ListOfValues2 )
+	Returns a boolean respresenting whether two return-delimited lists of values match,
+	regardless of the order of the values in each list.
+	========================================== */
+
+	FilterValues ( ListOfValues1 ; ListOfValues1 ) = FilterValues ( ListOfValues1 ; ListOfValues2 )
+
+]]></Calculation></CustomFunction></fmxmlsnippet>
